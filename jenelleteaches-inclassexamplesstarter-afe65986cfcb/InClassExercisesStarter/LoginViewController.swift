@@ -6,7 +6,7 @@ import UIKit
 import FirebaseAuth
 
 class LoginViewController: UIViewController {
-
+    var name = "unknown"
     @IBOutlet weak var txtEmail: UITextField!
     @IBOutlet weak var txtPassword: UITextField!
     var email = ""
@@ -28,7 +28,7 @@ class LoginViewController: UIViewController {
                 print("Email: \(user?.user.email)")
                 
                 var id = user?.user.email
-                
+                self.name = user?.user.email ?? "unknown"
                 let userDefaults = UserDefaults.standard
                 userDefaults.setValue(id, forKey: "userId")
                 userDefaults.synchronize()
@@ -99,5 +99,10 @@ class LoginViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let n1 = segue.destination as! MenuTableViewController
+        n1.name = name
+        print("name has ben sent to next screen")
     }
 }

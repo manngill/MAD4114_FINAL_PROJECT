@@ -20,7 +20,7 @@
 		05EB5DF821A5E32800D9CE24 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05EB5DF721A5E32800D9CE24 /* MapViewController.swift */; };
 		05EB5DFA21A5E3A500D9CE24 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05EB5DF921A5E3A500D9CE24 /* TableViewController.swift */; };
 		05FBB3BA21A62876005CACC3 /* JSONViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05FBB3B921A62876005CACC3 /* JSONViewController.swift */; };
-		079C9B3721A6E856006B71D5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 079C9B3621A6E856006B71D5 /* GoogleService-Info.plist */; };
+		694FE54421ACCC4300ACE735 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 694FE54321ACCC4300ACE735 /* GoogleService-Info.plist */; };
 		A69A599BE3BB28B1BC051681 /* Pods_InClassExercisesStarter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D6F1AC2E4150BE1AF3406D7 /* Pods_InClassExercisesStarter.framework */; };
 /* End PBXBuildFile section */
 
@@ -40,9 +40,9 @@
 		05EB5DF721A5E32800D9CE24 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		05EB5DF921A5E3A500D9CE24 /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		05FBB3B921A62876005CACC3 /* JSONViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONViewController.swift; sourceTree = "<group>"; };
-		079C9B3621A6E856006B71D5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		1D6F1AC2E4150BE1AF3406D7 /* Pods_InClassExercisesStarter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_InClassExercisesStarter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B40CA9A68529FC1AE00F898 /* Pods-InClassExercisesStarter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InClassExercisesStarter.debug.xcconfig"; path = "Pods/Target Support Files/Pods-InClassExercisesStarter/Pods-InClassExercisesStarter.debug.xcconfig"; sourceTree = "<group>"; };
+		694FE54321ACCC4300ACE735 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		922D9DFDF5A7E8609903DE7F /* Pods-InClassExercisesStarter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InClassExercisesStarter.release.xcconfig"; path = "Pods/Target Support Files/Pods-InClassExercisesStarter/Pods-InClassExercisesStarter.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -93,7 +93,7 @@
 				0587C33321A6DC2B009A18E4 /* MenuTableViewController.swift */,
 				0587C33521A6DD57009A18E4 /* LoginViewController.swift */,
 				0587C33921A6DF75009A18E4 /* MakeReservationViewController.swift */,
-				079C9B3621A6E856006B71D5 /* GoogleService-Info.plist */,
+				694FE54321ACCC4300ACE735 /* GoogleService-Info.plist */,
 				054C0C2E21A6E287005E8DE5 /* RestaurantMapViewController.swift */,
 				054C0C2C21A6E1DD005E8DE5 /* SeeReservationsViewController.swift */,
 				053F392B21A6CEB6001EA763 /* Example Viiew Controllers */,
@@ -185,7 +185,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				057C2C3A21A5D26E00221B22 /* LaunchScreen.storyboard in Resources */,
-				079C9B3721A6E856006B71D5 /* GoogleService-Info.plist in Resources */,
+				694FE54421ACCC4300ACE735 /* GoogleService-Info.plist in Resources */,
 				057C2C3721A5D26E00221B22 /* Assets.xcassets in Resources */,
 				057C2C3521A5D26E00221B22 /* Main.storyboard in Resources */,
 			);

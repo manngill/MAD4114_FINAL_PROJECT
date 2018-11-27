@@ -6,77 +6,79 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 import MapKit
+import CoreLocation
+import FirebaseFirestore
 
-class RestaurantMapViewController: UIViewController, MKMapViewDelegate {
-    
+class RestaurantMapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
+     var db:Firestore!
+      var name = ""
+      var row = ""
+    var d = 0
+    var userdata:[String:Any] = [:]
+    var arr:[String] = []
     // MARK: Outlets
     @IBOutlet weak var mapView: MKMapView!
     
     // variables for getting lat and
-    var lat = ""
-    var lng = ""
+    var lat = 0.0
+    var lng = 0.0
     
     override func viewDidLoad() {
         super.viewDidLoad()
         print("loaded the map screen")
-        self.mapView.delegate = self
-        
-        let url = "https://opentable.herokuapp.com/api/restaurants?city=Toronto&per_page=5"
-        
-        Alamofire.request(url, method: .get, parameters: nil).responseJSON {
-            (response) in
-            
-            // -- put your code below this line
-            
-            let x = CLLocationCoordinate2DMake(43.6532, -79.3832)
-            
-            // pick a zoom level
-            let y = MKCoordinateSpanMake(0.01, 0.01)
-            
-            // set the region property of the mapview
+        db = Firestore.firestore()
+       self.mapView.delegate = self
+           let x = CLLocationCoordinate2DMake(43.6532, -79.3832)
+           let y = MKCoordinateSpanMake(0.01, 0.01)
             let z = MKCoordinateRegionMake(x, y)
             self.mapView.setRegion(z, animated: true)
+        db.collection("user").getDocuments() {
+            (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                self.d = querySnapshot!.documents.count
+                var j = ""
+                var s = 0
+              for document in querySnapshot!.documents {
+                    print("\(document.documentID) => \(document.data())")
+
+                    if (s <= self.d){
+                      self.userdata[document.documentID] =  document
+                        //self.userdata[document.documentID] = document.data()
+                        self.arr[s] = self.userdata[document.documentID]! as! String
+                        s = s+1
+                }
+            }
+        }
+        }
             
-            if (response.result.isSuccess) {
-                print("awesome, i got a response from the website!")
-                print("Response from webiste: " )
-                print(response.data)
-                
-                do {
-                    let json = try JSON(data:response.data!)
-                    print(json)
-                    // print("\(json["restaurants"][0]["name"])")
-                    let arr = [0, 1, 2, 3, 4]
-                    for i in arr
+        let arr1 =  self.arr.count
+            var i = 0
+       // for i in arr1
+        repeat
                     {
+                        var id = self.arr[i]
+                        var userPin = self.userdata[id]
                         let pin = MKPointAnnotation()
-                        var lat = json["restaurants"][i]["lat"].double
-                        var lng = json["restaurants"][i]["lng"].double
-                        let x = CLLocationCoordinate2DMake(lat! , lng!)
+                         self.lat = (self.userdata[id] as AnyObject).latitude
+                        self.lng = (self.userdata[id] as AnyObject).longitude
+                        let x = CLLocationCoordinate2DMake(self.lat , self.lng)
                         
                         pin.coordinate = x
                         
                         // 3. OPTIONAL: add a information popup (a "bubble")
-                        pin.title = json["restaurants"][i]["name"].string
+                        pin.title = (self.userdata[id] as AnyObject).name
                         
                         // 4. Show the pin on the map
                         self.mapView.addAnnotation(pin)
-                    }
-                }
-                catch {
-                    print ("Error getting data")
-                }
+                        i = i+1
+                }while (i < arr1)
                 
             }
-            
-        }
-        
-        
-        
-        
-    }
+       
     
-    
+  
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }

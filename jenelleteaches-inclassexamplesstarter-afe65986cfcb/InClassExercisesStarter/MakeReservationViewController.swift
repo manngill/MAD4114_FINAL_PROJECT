@@ -4,9 +4,9 @@ import UIKit
 import FirebaseFirestore
 import Alamofire
 import SwiftyJSON
+import CoreLocation
 
-
-class MakeReservationViewController: UIViewController {
+class MakeReservationViewController: UIViewController,CLLocationManagerDelegate  {
     var name = [String]()
     @IBOutlet weak var msgL: UILabel!
     // MARK: Outlets
@@ -18,7 +18,7 @@ class MakeReservationViewController: UIViewController {
     // Mark: Firestore variables
     var db:Firestore!
     var bc = ""
-    
+    var manager:CLLocationManager!
     // MARK: Default Functions
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,7 +26,7 @@ class MakeReservationViewController: UIViewController {
         bc = UserDefaults.standard.string(forKey: "userId")!
         print(bc)
         db = Firestore.firestore()
-        
+    
         let settings = db.settings
         settings.areTimestampsInSnapshotsEnabled = true
         db.settings = settings
