@@ -68,9 +68,11 @@ class MenuTableViewController: UITableViewController{
         
         
         print("Selected row: \(i)")
-        let n1 = segue.destination as! RestaurantMapViewController
+        let n1 = segue.destination as! MakeReservationViewController
         n1.name = name
         n1.row = items[i ?? 0]
+        n1.r = i ?? 0
+        
         print("\(i) row selected as pokemon")
        
             
