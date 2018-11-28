@@ -209,7 +209,7 @@
             </objects>
             <point key="canvasLocation" x="1116" y="3586.0569715142433"/>
         </scene>
-        <!--Menu Table View Controller-->
+        <!--Select your Pokemon-->
         <scene sceneID="po3-I0-Xec">
             <objects>
                 <tableViewController storyboardIdentifier="tableVC" id="irl-Fk-UKc" customClass="MenuTableViewController" customModule="InClassExercisesStarter" customModuleProvider="target" sceneMemberID="viewController">
@@ -235,7 +235,7 @@
                             <outlet property="delegate" destination="irl-Fk-UKc" id="UQH-7u-CBi"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="2qa-n7-ZXD"/>
+                    <navigationItem key="navigationItem" title="Select your Pokemon" id="2qa-n7-ZXD"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fSU-kd-OpR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

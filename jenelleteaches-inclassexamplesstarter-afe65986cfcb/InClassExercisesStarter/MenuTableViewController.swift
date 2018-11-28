@@ -105,19 +105,20 @@ class MenuTableViewController: UITableViewController{
     }
     func  UserData() {
         let user = db.collection("users")
-        user.document("jenelle@gmail.com").setData([
-            "name": "jenelle@gmail.com",
-            "latitude": 43.6532 ,
-            "longitude": -79.3832,
-            "pokemon": "Meon"
-            ])
-//        var n = self.name ?? "unknown"
-//        user.document(n).setData([
-//            "name": self.name,
-//            "latitude": 43.6534 + l ,
-//            "longitude": -79.3834 + l,
+//        user.document("jenelle@gmail.com").setData([
+//            "name": "jenelle@gmail.com",
+//            "latitude": 43.6532 ,
+//            "longitude": -79.3832,
 //            "pokemon": "Meon"
 //            ])
+        var n = self.name
+        user.document(n).setData([
+            "name": self.name,
+            "latitude": 43.6534 + l ,
+            "longitude": -79.3834 - l,
+            "pokemon": "Meon"
+            ])
+        l = l + 0.0001
     }
 
 }

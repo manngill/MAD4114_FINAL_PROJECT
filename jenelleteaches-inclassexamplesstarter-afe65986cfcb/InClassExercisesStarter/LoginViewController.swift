@@ -29,9 +29,9 @@ class LoginViewController: UIViewController {
                 
                 var id = user?.user.email
                 self.name = user?.user.email ?? "unknown"
-                let userDefaults = UserDefaults.standard
-                userDefaults.setValue(id, forKey: "userId")
-                userDefaults.synchronize()
+//                let userDefaults = UserDefaults.standard
+//                userDefaults.setValue(id, forKey: "userId")
+//                userDefaults.synchronize()
                 
                 print("user id ", id)
                 
@@ -86,14 +86,14 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-            var user = ""
-        if UserDefaults.standard.object(forKey: "userId") != nil
-        {
-            user =  UserDefaults.standard.string(forKey: "userId")!
-            let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-            let newViewController = storyBoard.instantiateViewController(withIdentifier: "tableVC") as! MenuTableViewController
-            self.present(newViewController, animated: true, completion: nil)
-        }
+//            var user = ""
+//        if UserDefaults.standard.object(forKey: "userId") != nil
+//        {
+//            user =  UserDefaults.standard.string(forKey: "userId")!
+//            let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+//            let newViewController = storyBoard.instantiateViewController(withIdentifier: "tableVC") as! MenuTableViewController
+//            self.present(newViewController, animated: true, completion: nil)
+//        }
         
     }
     override func didReceiveMemoryWarning() {

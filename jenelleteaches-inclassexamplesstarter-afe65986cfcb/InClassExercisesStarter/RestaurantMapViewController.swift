@@ -14,8 +14,8 @@ class RestaurantMapViewController: UIViewController, MKMapViewDelegate, CLLocati
       var name = ""
       var row = ""
     var d = 0
-    var userdata:[String:Any] = [:]
-    var arr:[String] = []
+    var userdata:[String:[String:Any]] = [:]
+   // var pin:[MKPointAnnotation] = [MKPointAnnotation()]
     // MARK: Outlets
     @IBOutlet weak var mapView: MKMapView!
     
@@ -30,55 +30,41 @@ class RestaurantMapViewController: UIViewController, MKMapViewDelegate, CLLocati
        self.mapView.delegate = self
            let x = CLLocationCoordinate2DMake(43.6532, -79.3832)
            let y = MKCoordinateSpanMake(0.01, 0.01)
-            let z = MKCoordinateRegionMake(x, y)
-            self.mapView.setRegion(z, animated: true)
-        db.collection("user").getDocuments() {
+           let z = MKCoordinateRegionMake(x, y)
+         self.mapView.setRegion(z, animated: true)
+         db.collection("users").getDocuments() {
             (querySnapshot, err) in
             if let err = err {
                 print("Error getting documents: \(err)")
             } else {
                 self.d = querySnapshot!.documents.count
-                var j = ""
-                var s = 0
-              for document in querySnapshot!.documents {
-                    print("\(document.documentID) => \(document.data())")
-
-                    if (s <= self.d){
-                      self.userdata[document.documentID] =  document
-                        //self.userdata[document.documentID] = document.data()
-                        self.arr[s] = self.userdata[document.documentID]! as! String
-                        s = s+1
+            for document in querySnapshot!.documents {
+                //print("\(document.documentID) = \(document.data())")
+                self.userdata[document.documentID] =  document.data()
+                print(self.userdata[document.documentID] ?? "unknown")
                 }
             }
-        }
-        }
-            
-        let arr1 =  self.arr.count
-            var i = 0
-       // for i in arr1
-        repeat
-                    {
-                        var id = self.arr[i]
-                        var userPin = self.userdata[id]
-                        let pin = MKPointAnnotation()
-                         self.lat = (self.userdata[id] as AnyObject).latitude
-                        self.lng = (self.userdata[id] as AnyObject).longitude
-                        let x = CLLocationCoordinate2DMake(self.lat , self.lng)
-                        
-                        pin.coordinate = x
-                        
-                        // 3. OPTIONAL: add a information popup (a "bubble")
-                        pin.title = (self.userdata[id] as AnyObject).name
-                        
-                        // 4. Show the pin on the map
-                        self.mapView.addAnnotation(pin)
-                        i = i+1
-                }while (i < arr1)
-                
+            for i in self.userdata.values {
+                print(i["name"]!)
+                let pin = MKPointAnnotation()
+                self.lat = i["latitude"]! as! Double
+                self.lng = i["longitude"]! as! Double
+                let x = CLLocationCoordinate2DMake(self.lat , self.lng)
+
+                pin.coordinate = x
+                pin.title = i["pokemon"]! as? String
+                print("--------")
+                print(self.lat)
+                print(self.lng)
+                print(pin.title)
+                print("---------")
+        
+                self.mapView.addAnnotation(pin)
+
             }
-       
+        }
     
-  
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
@@ -96,7 +82,7 @@ class RestaurantMapViewController: UIViewController, MKMapViewDelegate, CLLocati
         r.span.latitudeDelta = r.span.latitudeDelta / 4
         r.span.longitudeDelta = r.span.longitudeDelta / 4
         print("New zoom: \(r.span.latitudeDelta)")
-        print("-=------")
+        print("-------")
         self.mapView.setRegion(r, animated: true)
         
         // HINT: Check MapExamples/ViewController.swift
