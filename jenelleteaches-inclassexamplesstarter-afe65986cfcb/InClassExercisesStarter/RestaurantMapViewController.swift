@@ -11,6 +11,8 @@ import FirebaseFirestore
 
 class RestaurantMapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
      var db:Firestore!
+    var annotation:MKAnnotation!
+      var image = ""
       var name = ""
       var row = ""
     var d = 0
@@ -22,12 +24,33 @@ class RestaurantMapViewController: UIViewController, MKMapViewDelegate, CLLocati
     // variables for getting lat and
     var lat = 0.0
     var lng = 0.0
-    
+    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView?
+    {
+        if !(annotation is MKPointAnnotation) {
+            return nil
+        }
+        
+        let annotationIdentifier = "AnnotationIdentifier"
+        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: annotationIdentifier)
+        
+        if annotationView == nil {
+            annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: annotationIdentifier)
+            annotationView!.canShowCallout = true
+        }
+        else {
+            annotationView!.annotation = annotation
+        }
+        
+        let pinImage = UIImage(named: "pikachu")
+        annotationView!.image = pinImage
+        return annotationView
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         print("loaded the map screen")
         db = Firestore.firestore()
        self.mapView.delegate = self
+       
            let x = CLLocationCoordinate2DMake(43.6532, -79.3832)
            let y = MKCoordinateSpanMake(0.01, 0.01)
            let z = MKCoordinateRegionMake(x, y)
@@ -47,6 +70,9 @@ class RestaurantMapViewController: UIViewController, MKMapViewDelegate, CLLocati
             for i in self.userdata.values {
                 print(i["name"]!)
                 let pin = MKPointAnnotation()
+                let myPinView = MKPinAnnotationView()
+                myPinView.animatesDrop = true;
+                myPinView.image = UIImage(named: "pikachu")
                 self.lat = i["latitude"]! as! Double
                 self.lng = i["longitude"]! as! Double
                 let x = CLLocationCoordinate2DMake(self.lat , self.lng)
@@ -58,7 +84,20 @@ class RestaurantMapViewController: UIViewController, MKMapViewDelegate, CLLocati
                 print(self.lng)
                 print(pin.title)
                 print("---------")
-        
+//                var annotationView = self.mapView.dequeueReusableAnnotationView(withIdentifier: "annotationIdentifier")
+//
+//                if annotationView == nil {
+//                    annotationView = MKAnnotationView(annotation: self.annotation, reuseIdentifier: "annotationIdentifier")
+//                    annotationView!.canShowCallout = true
+//                }
+//                else {
+//                    annotationView!.annotation = self.annotation
+//                }
+//
+//                let pinImage = UIImage(named: "pikachu")
+//                annotationView!.image = pinImage
+//               // return annotationView
+//
                 self.mapView.addAnnotation(pin)
 
             }
