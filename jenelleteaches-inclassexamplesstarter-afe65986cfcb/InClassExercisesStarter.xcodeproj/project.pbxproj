@@ -23,6 +23,7 @@
 		690B326521AE78F500FC6F95 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 690B326421AE78F500FC6F95 /* MapKit.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		690B326721AE796A00FC6F95 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 690B326621AE796A00FC6F95 /* CoreLocation.framework */; };
 		694FE54421ACCC4300ACE735 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 694FE54321ACCC4300ACE735 /* GoogleService-Info.plist */; };
+		69A59AF621AF1D4B00FA1D48 /* CustomPinsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69A59AF521AF1D4B00FA1D48 /* CustomPinsViewController.swift */; };
 		A69A599BE3BB28B1BC051681 /* Pods_InClassExercisesStarter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D6F1AC2E4150BE1AF3406D7 /* Pods_InClassExercisesStarter.framework */; };
 /* End PBXBuildFile section */
 
@@ -47,6 +48,7 @@
 		690B326421AE78F500FC6F95 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		690B326621AE796A00FC6F95 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		694FE54321ACCC4300ACE735 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		69A59AF521AF1D4B00FA1D48 /* CustomPinsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPinsViewController.swift; sourceTree = "<group>"; };
 		922D9DFDF5A7E8609903DE7F /* Pods-InClassExercisesStarter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InClassExercisesStarter.release.xcconfig"; path = "Pods/Target Support Files/Pods-InClassExercisesStarter/Pods-InClassExercisesStarter.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -105,6 +107,7 @@
 				053F392B21A6CEB6001EA763 /* Example Viiew Controllers */,
 				057C2C2F21A5D26E00221B22 /* AppDelegate.swift */,
 				057C2C3321A5D26E00221B22 /* Main.storyboard */,
+				69A59AF521AF1D4B00FA1D48 /* CustomPinsViewController.swift */,
 				057C2C3621A5D26E00221B22 /* Assets.xcassets */,
 				057C2C3821A5D26E00221B22 /* LaunchScreen.storyboard */,
 				057C2C3B21A5D26E00221B22 /* Info.plist */,
@@ -282,6 +285,7 @@
 				057C2C3021A5D26E00221B22 /* AppDelegate.swift in Sources */,
 				054C0C2D21A6E1DD005E8DE5 /* SeeReservationsViewController.swift in Sources */,
 				0587C33A21A6DF75009A18E4 /* MakeReservationViewController.swift in Sources */,
+				69A59AF621AF1D4B00FA1D48 /* CustomPinsViewController.swift in Sources */,
 				05FBB3BA21A62876005CACC3 /* JSONViewController.swift in Sources */,
 				05EB5DFA21A5E3A500D9CE24 /* TableViewController.swift in Sources */,
 			);

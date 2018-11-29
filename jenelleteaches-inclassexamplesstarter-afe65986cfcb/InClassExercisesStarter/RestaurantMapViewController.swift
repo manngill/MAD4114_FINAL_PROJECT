@@ -24,31 +24,12 @@ class RestaurantMapViewController: UIViewController, MKMapViewDelegate, CLLocati
     // variables for getting lat and
     var lat = 0.0
     var lng = 0.0
-    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView?
-    {
-        if !(annotation is MKPointAnnotation) {
-            return nil
-        }
-        
-        let annotationIdentifier = "AnnotationIdentifier"
-        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: annotationIdentifier)
-        
-        if annotationView == nil {
-            annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: annotationIdentifier)
-            annotationView!.canShowCallout = true
-        }
-        else {
-            annotationView!.annotation = annotation
-        }
-        
-        let pinImage = UIImage(named: "pikachu")
-        annotationView!.image = pinImage
-        return annotationView
-    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         print("loaded the map screen")
         db = Firestore.firestore()
+        self.image = self.row
        self.mapView.delegate = self
        
            let x = CLLocationCoordinate2DMake(43.6532, -79.3832)
@@ -70,39 +51,57 @@ class RestaurantMapViewController: UIViewController, MKMapViewDelegate, CLLocati
             for i in self.userdata.values {
                 print(i["name"]!)
                 let pin = MKPointAnnotation()
-                let myPinView = MKPinAnnotationView()
-                myPinView.animatesDrop = true;
-                myPinView.image = UIImage(named: "pikachu")
                 self.lat = i["latitude"]! as! Double
                 self.lng = i["longitude"]! as! Double
                 let x = CLLocationCoordinate2DMake(self.lat , self.lng)
 
                 pin.coordinate = x
                 pin.title = i["pokemon"]! as? String
-                print("--------")
+                self.image = self.row as! String
                 print(self.lat)
                 print(self.lng)
                 print(pin.title)
                 print("---------")
-//                var annotationView = self.mapView.dequeueReusableAnnotationView(withIdentifier: "annotationIdentifier")
-//
-//                if annotationView == nil {
-//                    annotationView = MKAnnotationView(annotation: self.annotation, reuseIdentifier: "annotationIdentifier")
-//                    annotationView!.canShowCallout = true
-//                }
-//                else {
-//                    annotationView!.annotation = self.annotation
-//                }
-//
-//                let pinImage = UIImage(named: "pikachu")
-//                annotationView!.image = pinImage
-//               // return annotationView
-//
+
                 self.mapView.addAnnotation(pin)
 
             }
         }
     
+    }
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        
+        // YOUTUBE LINK: https://www.youtube.com/watch?v=FSHz5CnYSOY
+         for i in self.userdata.values {
+             self.image = self.row  as! String
+        
+        if !(annotation is MKPointAnnotation) {
+            print("I found a pin, but it's not of type MKPointAnnotation!")
+            return nil  // exit this function!
+        }
+        
+        var annotationView = self.mapView.dequeueReusableAnnotationView(withIdentifier: "pokemonIdentifier")
+        
+        if (annotationView == nil) {
+            annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: "pokemonIdentifier")
+            annotationView!.canShowCallout = false
+        }
+        else {
+            annotationView!.annotation = annotation
+        }
+        
+        // pick the image for the pin
+        annotationView!.image = UIImage(named:self.image)
+        
+        // set the size of the pin - in the example below, it sets: height = 64, width = 65
+        annotationView!.bounds.size.height = CGFloat(40)
+        annotationView!.bounds.size.width = CGFloat(40)
+        
+        
+            return annotationView
+        
+    }
+        return annotation as! MKAnnotationView
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
