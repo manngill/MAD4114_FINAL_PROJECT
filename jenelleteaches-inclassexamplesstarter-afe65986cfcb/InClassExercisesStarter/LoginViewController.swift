@@ -23,7 +23,7 @@ class LoginViewController: UIViewController {
             
             if (user != nil) {
                 // 1. Found a user!
-                print("User signed in! ")
+               
                 print("User id: \(user?.user.uid)")
                 print("Email: \(user?.user.email)")
                 
@@ -54,7 +54,7 @@ class LoginViewController: UIViewController {
         }
     }
     
-    @IBAction func btnSignup(_ sender: Any) {
+    /*@IBAction func btnSignup(_ sender: Any) {
         email = txtEmail.text!
         password  = txtPassword.text!
         
@@ -81,7 +81,7 @@ class LoginViewController: UIViewController {
                 
             }
         }
-    }
+    }*/
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -96,13 +96,13 @@ class LoginViewController: UIViewController {
 //        }
         
     }
-    override func didReceiveMemoryWarning() {
+   /* override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let n1 = segue.destination as! MenuTableViewController
+        let n1 = segue.destination as! SignUpViewController
         n1.name = name
         print("name has ben sent to next screen")
-    }
+    }*/
 }
